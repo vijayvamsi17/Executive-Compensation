@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Executive Compensation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="static/css/index.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+
+</head>
+
+<body ng-app="myApp" ng-controller="ScrollController">
+    <div class="wrapper">
+        <div class="inner-bg">
+            <div class="company-logo-wrapper">
+                <li><img class="company-logo" src="./static/images/newlogo.png" alt="logo"></li>
+            </div>
+            <div class="form-box">
+                <div class="form-title">
+                    <h2>Generate Report</h2>
+                </div>
+                <div class="form-group dropdwn">
+                    <select class="form-control">
+                        <option selected>Select Company</option>
+                        <option>Marvel</option>
+                        <option>PNG</option>
+                        <option>Ford</option>
+                        <option>GM</option>
+                        <option>Tesla</option>
+                    </select>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="form form-text">
+                            <div class="form-group row">
+                                <label class="control-label col-sm-6"> Long-Term Insentive:</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-6"> Pension Benifits:</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-6"> Savings and Profits Sharing Plan:</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-6"> Health and welfare Benifits Coverage:</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button type="button" class="btn btn-success" ng-click="gotoBottom()">Generate</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-box2" id="bottom" ng-show="showPdf">
+        <div class="form-image">
+            <li><img class="frmImg" src="./static/images/pdf1-1.jpg" alt="logo"></li>
+            <li><img class="frmImg" src="./static/images/pdf2-1.jpg" alt="logo"></li>
+            <li><img class="frmImg" src="./static/images/pdf3-1.jpg" alt="logo"></li>
+            <li><img class="frmImg" src="./static/images/pdf4-1.jpg" alt="logo"></li>
+        </div>
+    </div>
+
+
+
+
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('ScrollController', ['$scope', '$location', '$anchorScroll',
+  function($scope, $location, $anchorScroll) {
+
+  	$scope.showPdf = false;
+    $scope.gotoBottom = function() {
+      $location.hash('bottom');
+      $anchorScroll();
+      $scope.showPdf = true;
+    };
+  }]);
+</script>
+    
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville');
+
+body, html{
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			font-size: 16px;
+			font-family: "Lato", sans-serif;
+			font-weight: 400;
+			line-height: 1.8em;
+			color: #666;
+	
+		}
+
+ul,li {
+	list-style-type: none;
+}
+
+hr {
+	clear: both;
+	visibility: hidden;
+}
+
+fieldset, img {
+	border: 0;
+}
+
+.wrapper{
+	background-image: url(../images/image1.jpg);
+	position: relative;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	min-height: 100%;
+}
+
+.inner-bg{
+	display: block;
+	background-color: rgba(14,14,14,0.7);
+	height: 100%;
+	width: 100%;
+	position: absolute;
+}
+
+.company-logo{
+	display: block;
+	height: 75px;
+	width: 300px;
+	top: 0;
+	left: 0;
+	opacity: 1;
+	margin-left: 10px;
+    margin-top: 5px;
+}
+
+.form-box{
+	position: absolute;
+			top:50%;
+			width:500px;
+			text-align: center;
+			color:#000;
+			background-color: rgba(36,36,36,0.6);
+			left: 50%;
+			transform:translate(-50%, -50%);
+			padding: 25px;
+			border-radius: 10px;
+			font-family: 'Libre Baskerville', serif;
+			box-shadow: 2px 6px 17px 1px black;
+
+}
+
+.dropdwn{
+	/*width: 500px;
+	text-align: center;*/
+}
+
+.form-title h2{
+	margin:0 0 25px 0;
+	padding:0;
+	color: #fff;
+	font-weight: 500;
+}
+
+.form-text{
+	font-family: 'Libre Baskerville', serif;
+	color: #fff;
+}
+
+.form-text.inpBox{
+	margin-bottom: 5px;
+}
+
+
+
+
+.form-box2{
+	display: block;
+	position: relative;
+	background-position: center;
+	background-size: cover;
+	background-repeat: repeat;
+	background-attachment: fixed;
+	margin-top: 0px;
+	background-color: #888;
+	height: 4000px;
+	width: 100%;
+
+}
+
+.form-box2 .frmImg{
+	text-align: center;
+	position: relative;
+	width: 850px;
+	height: 1000px;
+	padding-top: 10px;
+	margin-left: 40%;
+	transform:translate(-30%, 0%);
+}
+
+
