@@ -6,20 +6,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link href="static/js/angular-bootstrap-toggle.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="static/css/index.css">
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-
-
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.min.js"></script>
+    <script src="static/js/angular-bootstrap-toggle.min.js"></script>
+    <script src="https://use.fontawesome.com/629708196f.js"></script>
 </head>
 
 <body ng-app="myApp" ng-controller="ScrollController">
-    <div class="wrapper">
+    <div class="wrapper" ng-init="initial()">
         <div class="inner-bg">
             <div class="company-logo-wrapper">
                 <li><img class="company-logo" src="./static/images/newlogo.png" alt="logo"></li>
@@ -44,30 +42,33 @@
                             <div class="form-group row">
                                 <label class="control-label col-sm-6"> Long-Term Insentive:</label>
                                 <div class="col-sm-6">
-                                    <input class="form-control" type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success">
+                                    <toggle ng-model="LTI" ng-change="dataShow(LTI, 'LTI')" onstyle="btn-success" on="Yes" off="No"></toggle>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="control-label col-sm-6"> Pension Benifits:</label>
                                 <div class="col-sm-6">
-                                    <input class="form-control" type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success">
+                                    <toggle ng-model="PB" ng-change="dataShow(PB, 'PB')" onstyle="btn-success" on="Yes" off="No"></toggle>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="control-label col-sm-6"> Savings and Profits Sharing Plan:</label>
                                 <div class="col-sm-6">
-                                    <input class="form-control" type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success">
+                                    <toggle ng-model="SAP" ng-change="dataShow(SAP, 'SAP')" onstyle="btn-success" on="Yes" off="No"></toggle>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="control-label col-sm-6"> Health and welfare Benifits Coverage:</label>
                                 <div class="col-sm-6">
-                                    <input class="form-control" type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success">
+                                    <toggle ng-model="HAW" ng-change="dataShow(HAW, 'HAW')" onstyle="btn-success" on="Yes" off="No"></toggle>
                                 </div>
                             </div>
+                            
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <button type="button" class="btn btn-success" ng-click="gotoBottom()">Generate</button>
+                                    <!-- <i class="fa fa-spinner fa-pulse fa-3x fa-fw" ng-hide="button"></i>
+                                    <span class="sr-only">Loading...</span> -->
                                 </div>
                             </div>
                         </div>
@@ -78,31 +79,68 @@
     </div>
     <div class="form-box2" id="bottom" ng-show="showPdf">
         <div class="form-image">
-            <li><img class="frmImg" src="./static/images/pdf1-1.jpg" alt="logo"></li>
-            <li><img class="frmImg" src="./static/images/pdf2-1.jpg" alt="logo"></li>
-            <li><img class="frmImg" src="./static/images/pdf3-1.jpg" alt="logo"></li>
-            <li><img class="frmImg" src="./static/images/pdf4-1.jpg" alt="logo"></li>
+            <li ng-show="longTermncent"><img class="frmImg" src="./static/images/pdf1-1.jpg" alt="logo"></li>
+            <li ng-show="pensionBenifits"><img class="frmImg" src="./static/images/pdf2-1.jpg" alt="logo"></li>
+            <li ng-show="savAndPen"><img class="frmImg" src="./static/images/pdf3-1.jpg" alt="logo"></li>
+            <li ng-show="helAndWel"><img class="frmImg" src="./static/images/pdf4-1.jpg" alt="logo"></li>
         </div>
     </div>
+    <script>
+    var app = angular.module('myApp', ['ui.bootstrap', 'ui.toggle']);
+    app.controller('ScrollController', ['$scope', '$location', '$anchorScroll',
+        function($scope, $location, $anchorScroll) {
+
+            $scope.initial = function() {
+                $scope.reset();
+            };
+
+            $scope.reset = function() {
+                $scope.showPdf = false;
+                $scope.longTermncent = false;
+                $scope.pensionBenifits = false;
+                $scope.savAndPen = false;
+                $scope.helAndWel = false;
+                $scope.button = true;
+            };
 
 
 
+            $scope.gotoBottom = function() {
+                $scope.button = false;
+                if($scope.longTermncent || $scope.pensionBenifits || $scope.savAndPen || $scope.helAndWel) {
+                    $scope.showPdf = true;
+                    setTimeout($scope.doSomething, 1000);
+                    $scope.button = true;
+                
+            };
+            };
 
+            $scope.doSomething = function(){
+                
+                console.log("hello");
+                $location.hash('bottom');
+                $anchorScroll();
+            }
 
-<script>
-var app = angular.module('myApp', []);
-app.controller('ScrollController', ['$scope', '$location', '$anchorScroll',
-  function($scope, $location, $anchorScroll) {
-
-  	$scope.showPdf = false;
-    $scope.gotoBottom = function() {
-      $location.hash('bottom');
-      $anchorScroll();
-      $scope.showPdf = true;
-    };
-  }]);
-</script>
-    
+            $scope.dataShow = function(data, param) {
+                $scope.showPdf = false;
+                if(param == "LTI"){
+                    $scope.longTermncent = data;
+                    console.log($scope.longTermncent);
+                }
+                if(param == "PB"){
+                    $scope.pensionBenifits = data;
+                }
+                if(param == "SAP"){
+                    $scope.savAndPen = data;
+                }
+                if(param == "HAW"){
+                    $scope.helAndWel = data;
+                }
+            };
+        }
+    ]);
+    </script>
 </body>
 
 </html>
